@@ -19,3 +19,7 @@ spec:
           env:
           - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
           - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+
+  selector:
+    matchLabels:
+      component: pgadmin-app
