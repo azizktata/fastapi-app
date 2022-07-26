@@ -5,7 +5,7 @@ metadata:
   name: app-deployment
 
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: fastapi-app-container
-          image: aziz77/fastapi-app:fastapi-img
+          image: docker.io/aziz77/fastapi-app:fastapi-img
           ports:
           - containerPort: 80
           env:

@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: postgres
-          image: postgres:12-alpine
+          image: docker.io/aziz77/fastapi-app:psql
           ports:
             - containerPort: 5432
 
