@@ -1,22 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: app-deployment
-
+  labels:
+    app: fastapi
 spec:
-  replicas: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
   template:
     metadata:
       labels:
-        component: fastapi-app
+        app: fastapi
     spec:
       containers:
-        - name: fastapi-app-container
-          image: docker.io/aziz77/fastapi-app:fastapi-img
-          ports:
-          - containerPort: 80
-          env:
+      - name: fastapi
+        image: docker.io/aziz77/fastapi-app:fastapi-img
+        ports:
+        - containerPort: 80
+        env:
             
             - name: POSTGRES_HOST
               value: postgres-service
@@ -27,11 +30,4 @@ spec:
             - name: DB_NAME
               value: fastapi_db
             - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
-
-  selector:
-    matchLabels:
-      component: fastapi-app
+              value: system

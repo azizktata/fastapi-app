@@ -1,25 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: pgadmin-deployment
-
+  labels:
+    app: pgadmin
 spec:
-  replicas: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pgadmin
   template:
     metadata:
       labels:
-        component: pgadmin-app
+        app: pgadmin
     spec:
       containers:
-        - name: pgadmin-container
-          image: docker.io/aziz77/fastapi-app:pgadmin-img
-          ports:
-          - containerPort: 5050
-          env:
-          - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-          - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
-
-  selector:
-    matchLabels:
-      component: pgadmin-app
+      - name: pgadmin
+        image: docker.io/aziz77/fastapi-app:pgadmin-img
+        ports:
+        - containerPort: 5050
+        env:
+            
+            - name: PGADMIN_USER
+              value: admin@admin.com
+            - name: PGADMIN_PASSWORD
+              value: password
+            

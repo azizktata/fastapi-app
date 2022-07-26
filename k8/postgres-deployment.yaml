@@ -6,7 +6,7 @@ metadata:
   name: postgres-deployment
 
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       component: postgres
@@ -38,7 +38,4 @@ spec:
             - name: DB_NAME
               value: fastapi_db
             - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
+              value: system
